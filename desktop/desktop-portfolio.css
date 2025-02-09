@@ -1,0 +1,181 @@
+#selection-panelleft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px; /* Adjust width as needed */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 3; /* Ensure the panel is on top */
+}
+
+#selection-panelright {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px; /* Adjust width as needed */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 3; /* Ensure the panel is on top */
+}
+
+.image-box-container {
+    position: absolute;
+    top: 50%;
+    left: 25px; /* Adjust distance from left */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 45px; /* Space between images */
+}
+
+.image-box {
+    display: block;
+    width: 150px; /* Adjust size */
+    height: 150px;
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensures images stay inside rounded edges */
+    box-shadow: 0 4px 8px rgba(112, 110, 110, 0.2);
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-box:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* TOP AND BOTTOM BARS */
+.top-bar, .bottom-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%; /* Adjust as needed */
+    height: 60px; /* Adjust as needed */
+    background: #9fb8c2cc; /* Dark semi-transparent background */
+    border-radius: 40px; /* Makes it rounded */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between buttons */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(59, 56, 56, 0.3);
+}
+
+/* Top Bar Specific */
+.top-bar {
+    top: 5px;
+}
+
+/* Bottom Bar Specific */
+.bottom-bar {
+    bottom: 5px;
+}
+
+/* Button Styling */
+#links {
+    display: flex;
+    justify-content: center; /* Centers buttons inside the top bar */
+    align-items: center; /* Vertically aligns them */
+    gap: 30px; /* Space between buttons */
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Adjust to fit all buttons */
+    height: 80px; /* Adjust for proper fit */
+    border-radius: 40px;
+    padding: 10px;
+}
+
+#links .top-button {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    width: 130px;
+    height: 60px;
+    color: #ffffff;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    text-align: center;
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    transition: background 0.3s;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(112, 110, 110, 0.2);
+    margin-bottom: 25px;
+}
+
+#links .top-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+#shapes .shape {
+    font-family: 'Oswald', sans-serif;
+    font-size: 21px;
+    width: 130px;
+    height: 60px;
+    color: #ffffff;
+    padding: 10px;
+    margin-top: 2px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    gap: 4px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(112, 110, 110, 0.2);
+    border: none
+}
+
+#shapes .shape:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* This puts the canvas behind your content */
+}
+
+#name-overlay {
+    position: absolute;
+    /* your existing positioning styles */
+    pointer-events: none; /* This makes the text ignore mouse events */
+    z-index: 2; /* Keep it above the canvas but below UI elements */
+}
+
+/* If you have any clickable elements inside the name container that should work,
+   give them back their pointer events: */
+#name-overlay a, #name-overlay button {
+    pointer-events: auto;
+}
+
+body {
+    cursor: url('C:/Users/sydne/OneDrive/Desktop/threejsportfolio/textures/im.png'), auto;
+}
+
+a, button, .shape {
+    cursor: url('textures/im.png'), pointer;
+}
+.name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700; /* Explicitly set bold weight */
+    font-size: 80px; /* Adjust size as needed */
+    color: #ffffff; /* Adjust color */
+    padding-left: 355px; /* Adjust distance from left */
+    padding-top: 90px; /* Adjust distance from top */
+  }

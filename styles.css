@@ -1,0 +1,104 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #AEC6CF; /* Light cream background */
+    color: #ffffff; /* Dark text for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Loading Screen */
+#loading-screen {
+    text-align: center;
+}
+
+.loader {
+    width: 200px; /* Width of the progress bar */
+    height: 10px; /* Height of the progress bar */
+    background: #ddd; /* Light gray background for the bar */
+    border-radius: 5px; /* Rounded corners */
+    margin: 20px auto; /* Center the bar */
+    overflow: hidden; /* Hide overflowing animation */
+}
+
+.loader::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #ffffff; /* Light cream color for the progress */
+    border-radius: 5px;
+    animation: load 3s linear forwards; /* Animation duration */
+}
+
+@keyframes load {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+#loading-screen p {
+    font-size: 18px;
+    color: #ffffff; /* Dark text for contrast */
+    margin-top: 10px;
+}
+
+/* Button Screen */
+#button-screen {
+    text-align: center;
+}
+
+#button-screen.hidden {
+    display: none;
+}
+
+button {
+    font-family: 'Oswald', sans-serif;
+    padding: 50px 20px;
+    margin: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    background: #9fb8c2cc; /* Light cream color for buttons */
+    color: #ffffff; /* Dark text for contrast */
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(58, 58, 58, 0.1); /* Subtle shadow */
+}
+
+button:hover {
+    background: #b9cdd5cc; /* Slightly darker cream on hover */
+    transform: translateY(-2px); /* Lift the button on hover */
+}
+
+button:active {
+    transform: translateY(0); /* Reset the button on click */
+}
+
+#selection-panelleft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px; /* Adjust width as needed */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 3; /* Ensure the panel is on top */
+}
+
+#selection-panelright {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px; /* Adjust width as needed */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 3; /* Ensure the panel is on top */
+}

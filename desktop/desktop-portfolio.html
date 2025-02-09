@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sydney Walter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/Also.ico">
+    <link rel="stylesheet" href="desktop-portfolio.css"> <!-- Desktop-specific styles -->
+    <script type="importmap">
+    {
+        "imports": 
+        {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js"
+        }
+    }
+        </script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <script type="module" src="desktop-script.js"></script>
+    <!-- Selection Panels -->
+    <div id="selection-panelleft">
+        <div class="image-box-container">
+            <a href="link1.html" class="image-box">
+                <img src="../images/image1.jpg" alt="Image 1">
+            </a>
+            <a href="link2.html" class="image-box">
+                <img src="../images/image1.jpg" alt="Image 2">
+            </a>
+            <a href="link3.html" class="image-box">
+                <img src="../images/image1.jpg" alt="Image 3">
+            </a>
+        </div>
+    </div>
+
+    <div id="selection-panelright">
+        <div class="image-box-container">
+            <a href="link1.html" class="image-box">
+                <img src="../images/image1.jpg" alt="Image 1">
+            </a>
+            <a href="link2.html" class="image-box">
+                <img src="../images/image1.jpg" alt="Image 2">
+            </a>
+            <a href="link3.html" class="image-box">
+                <img src="../images/image1.jpg" alt="Image 3">
+            </a>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <div id="links">
+            <a href="page1.html" class="top-button">About Me</a>
+            <a href="page2.html" class="top-button">Resume</a>
+            <a href="page3.html" class="top-button">BlueSky</a>
+            <a href="page4.html" class="top-button">Goals</a>
+        </div>
+    </div>
+    
+    <!-- Bottom Rounded Rectangle -->
+    <div class="bottom-bar">
+        <div id="shapes">
+            <button class="shape" data-shape="model">Model</button>
+            <button class="shape" data-shape="sphere">Sphere</button>
+            <button class="shape" data-shape="torus">Torus</button>
+            <button class="shape" data-shape="torusKnot">Torus Knot</button>
+        </div>
+    </div>
+
+    <!-- Container for the 3D animation -->
+    <div id="animation-container"></div>
+
+    <!-- Overlay for your name -->
+    <div id="name-overlay">
+        <h1 class = "name">SYDNEY WALTER</h1>
+    </div>
+
+    <div id="canvas-container"></div>
+    
+    <script type="module" src="desktop-script.js"></script> <!-- Desktop-specific script -->
+
+    <div class="custom-cursor"></div>
+
+</body>
+</html>

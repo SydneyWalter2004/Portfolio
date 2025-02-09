@@ -1,0 +1,28 @@
+/* Mobile-specific styles */
+header {
+    background: #d4af37; /* Light cream background for header */
+    padding: 20px;
+    text-align: center;
+    color: #333; /* Dark text for contrast */
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background: #fff; /* White background for sections */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h1, h2 {
+    color: #333; /* Dark text for headings */
+}
+
+a {
+    color: #d4af37; /* Light cream color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
