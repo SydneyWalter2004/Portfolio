@@ -332,12 +332,12 @@
     text-align: center;
     pointer-events: none; /* This makes the text ignore mouse events */
     z-index: 2; /* Keep it above the canvas but below UI elements */
-    text-shadow: 0 0 5px #9d9bb4;
+    text-shadow: 0 0 5px #a6a6a6;
 }
 
 @keyframes breathing {
     0% {
-        text-shadow: 0 0 5px #9d9bb4, 0 0 10px #9d9bb4;
+        text-shadow: 0 0 5px #bbbbbb, 0 0 10px #777777;
     }
     /*100% {
         text-shadow: 0 0 10px #fff4d1;
@@ -470,11 +470,11 @@ body::before {
     z-index: 999; /* Ensures it stays on top */
 }
 
-@keyframes borderAnimation {
+/*@keyframes borderAnimation {
     0% { border-color: rgb(255, 224, 208); }
     25% { border-color: rgb(252, 255, 215); }
     50% { border-color: rgb(210, 255, 212); }
     75% { border-color: rgb(206, 223, 255) }
     100% { border-color: rgb(255, 202, 237); }
-}
+}*/
 
