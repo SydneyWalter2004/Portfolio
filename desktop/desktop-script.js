@@ -1,7 +1,4 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
-const loader = new GLTFLoader();
 
 const scene = new THREE.Scene();
 const mouse = new THREE.Vector2();
@@ -14,7 +11,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.getElementById('canvas-container').appendChild(renderer.domElement);
-scene.background = new THREE.Color(0xAEC6CF);
+//scene.background = new THREE.Color(0xAEC6CF);
 scene.fog = new THREE.Fog(0x222222, 5, 15);
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -57,8 +54,8 @@ const shapes = [];
 function animate() {
     requestAnimationFrame(animate);
     shapes.forEach(shape => {
-        shape.rotation.x += 0.02;
-        shape.rotation.y += 0.04;
+        shape.rotation.x += 0.01;
+        shape.rotation.y += 0.01;
     });
     renderer.render(scene, camera);
 }
@@ -89,10 +86,6 @@ function createShape(type) {
     texture4.minFilter = THREE.MipMap;
 
     switch (type) {
-        /*case 'icosahedron':
-            geometry = new THREE.IcosahedronGeometry(1, 0);
-            material = new THREE.MeshStandardMaterial({ map: texture4, color: 0xFFFFC5, roughness: 0.0, metalness: 0.0 });
-            break;*/
         case 'sphere':
             geometry = new THREE.SphereGeometry(1, 64, 64);
             material = new THREE.MeshStandardMaterial({ map: texture1, color: 0xE4A0B7, roughness: 0.0, metalness: 0.0 });
@@ -121,22 +114,6 @@ document.querySelectorAll('.shape').forEach(button => {
     });
 });
 
-function loadGLBModel() {
-    const modelGroup = new THREE.Group(); // Create a group to hold the model
-    loader.load(
-        '../models/pumping_heart_model.glb', // Path to your .glb file
-        function (gltf) {
-            const model = gltf.scene;
-            modelGroup.add(model); // Add the model to the group
-            console.log('Model loaded successfully!');
-        },
-        undefined, // Progress callback (optional)
-        function (error) {
-            console.error('Error loading model:', error);
-        }
-    );
-    return modelGroup; // Return the group containing the model
-}
 
 document.querySelectorAll('.shape').forEach(button => {
     button.addEventListener('click', (event) => {
@@ -146,7 +123,22 @@ document.querySelectorAll('.shape').forEach(button => {
     });
 });
 
+/*document.querySelector('.refresh').addEventListener('click', (event) => {
+    event.stopPropagation(); // Stop the click event from propagating to the document
+
+    // Remove all shapes from the scene
+    shapes.forEach(shape => {
+        scene.remove(shape);
+    });
+
+    // Clear the shapes array
+    shapes.length = 0;
+
+    console.log('All shapes cleared from the screen.');
+});
+
 const maxShapes = 20;
+*/
 
 window.addEventListener('click', (event) => {
     if (!selectedShapeType) {
@@ -186,3 +178,45 @@ window.addEventListener('click', (event) => {
         console.log('Shape placed at:', newShape.position);
     }
 });
+
+const infoText = document.getElementById('info-text');
+const messages = [
+    "Front-End Enthusiast",
+    "BlueSky Student Intern",
+    "Connect with me on LinkedIn",
+    "Let's build something together!",
+    "Check out my projects on GitHub",
+];
+let currentIndex = 0;
+
+// Function to update the text
+function updateInfoText() {
+    infoText.textContent = messages[currentIndex]; // Set the next message
+    currentIndex = (currentIndex + 1) % messages.length; // Move to the next message
+}
+
+// Listen for the end of each animation cycle
+infoText.addEventListener('animationiteration', () => {
+    updateInfoText(); // Update the text when the animation restarts
+});
+
+// Initialize the first message
+updateInfoText();
+
+const text = document.querySelector(".breathing-text");
+let glowIntensity = 5;
+let growing = true;
+
+setInterval(() => {
+    if (growing) {
+        glowIntensity += 2;
+        if (glowIntensity >= 30) growing = false;
+    } else {
+        glowIntensity -= 2;
+        if (glowIntensity <= 5) growing = true;
+    }
+
+    text.style.textShadow = `0 0 ${glowIntensity}px #00ffcc, 0 0 ${
+        glowIntensity * 2
+    }px #00ffcc`;
+}, 100);

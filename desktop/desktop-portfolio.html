@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sydney Walter</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../images/Also.ico">
+    <link rel="icon" type="image/x-icon" href="../images/logo.ico">
     <link rel="stylesheet" href="desktop-portfolio.css"> <!-- Desktop-specific styles -->
     <script type="importmap">
     {
@@ -18,69 +18,84 @@
         </script>
 </head>
 <body>
-    <div id="canvas-container"></div>
-    <script type="module" src="desktop-script.js"></script>
-    <!-- Selection Panels -->
-    <div id="selection-panelleft">
-        <div class="image-box-container">
-            <a href="link1.html" class="image-box">
-                <img src="../images/image1.jpg" alt="Image 1">
-            </a>
-            <a href="link2.html" class="image-box">
-                <img src="../images/image1.jpg" alt="Image 2">
-            </a>
-            <a href="link3.html" class="image-box">
-                <img src="../images/image1.jpg" alt="Image 3">
-            </a>
-        </div>
-    </div>
-
-    <div id="selection-panelright">
-        <div class="image-box-container">
-            <a href="link1.html" class="image-box">
-                <img src="../images/image1.jpg" alt="Image 1">
-            </a>
-            <a href="link2.html" class="image-box">
-                <img src="../images/image1.jpg" alt="Image 2">
-            </a>
-            <a href="link3.html" class="image-box">
-                <img src="../images/image1.jpg" alt="Image 3">
-            </a>
-        </div>
-    </div>
-
-    <div class="top-bar">
+    <div class="topright-bar">
         <div id="links">
-            <a href="page1.html" class="top-button">About Me</a>
-            <a href="page2.html" class="top-button">Resume</a>
-            <a href="page3.html" class="top-button">BlueSky</a>
-            <a href="page4.html" class="top-button">Goals</a>
+            <a href="desktop-about.html" class="top-button">About Me</a>
+            <a href="desktop-resume.html" class="top-button">Resume</a>
+            <a href="desktop-bluesky.html" class="top-button">BlueSky</a>
+            <a href="desktop-goals.html" class="top-button">Goals</a>
         </div>
     </div>
-    
-    <!-- Bottom Rounded Rectangle -->
+
+    <div class="topleft-bar">
+        <a href="#" class="circle-image">
+            <img src="../images/image1.jpg" alt="Clickable Circle Image">
+        </a>
+        <p>PORTFOLIO</p>
+    </div>
+
+    <div class="bottomleft-bar">
+        <a href="#" class="circle-image">
+            <img src="../images/image1.jpg" alt="Clickable Circle Image">
+        </a>
+        <p>Contact Me!</p>
+    </div>
+
+    <!-- Polaroid Containers on the Right Side -->
+<div class="polaroid-container">
+    <div class="polaroid">
+        <img src="../images/image1.jpg" alt="Polaroid Image 1">
+        <p>View My Course Artifacts</p>
+    </div>
+    <div class="polaroid">
+        <img src="../images/image1.jpg" alt="Polaroid Image 2">
+        <p>View My Internship Experience</p>
+    </div>
+</div>
+    <!-- Bottom Rounded Rectangle
     <div class="bottom-bar">
         <div id="shapes">
-            <button class="shape" data-shape="model">Model</button>
+            <button class="refresh" data-shape="model">↻</button>
             <button class="shape" data-shape="sphere">Sphere</button>
             <button class="shape" data-shape="torus">Torus</button>
             <button class="shape" data-shape="torusKnot">Torus Knot</button>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Container for the 3D animation -->
-    <div id="animation-container"></div>
+    <!-- Container for the 3D animation 
+    <div id="animation-container"></div>-->
 
     <!-- Overlay for your name -->
     <div id="name-overlay">
         <h1 class = "name">SYDNEY WALTER</h1>
     </div>
 
+    <div id="info-text"></div>
+
+    <div id="center-container">
+        <div id="center-paragraph">
+            <p>Hi! I'm Sydney Walter, a Computer Science student at the East Tennessee State University. I'm passionate about software development, web design, and computer graphics. Feel free to explore my portfolio and learn more about me!</p>
+        </div>
+    </div>
+
+
     <div id="canvas-container"></div>
     
     <script type="module" src="desktop-script.js"></script> <!-- Desktop-specific script -->
 
     <div class="custom-cursor"></div>
+<!--<div class="orb"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>-->
+    
+
+    <div class="top-border"></div>
+    <div class="bottom-border"></div>
+    <div class="left-border"></div>
+    <div class="right-border"></div>
+
 
 </body>
 </html>
