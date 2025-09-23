@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sydney Walter | Computing Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="/images/plug.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-color: 
+#2c3e50;
+            --secondary-color: 
+#3498db;
+            --accent-color: 
+#e74c3c;
+            --text-light: 
+#7f8c8d;
+            --text-dark: 
+#2c3e50;
+            --bg-light: 
+#f8f9fa;
+            --bg-white: 
+#ffffff;
+            --gradient-primary: linear-gradient(135deg, 
+#667eea 0%, 
+#764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, 
+#f093fb 0%, 
+#f5576c 100%);
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor */
+        * {
+            cursor: none !important;
+        }
+
+        body {
+            cursor: none !important;
+        }
+
+        a, button, .card, input, textarea, select {
+            cursor: none !important;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 13px;
+            height: 13px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, background 0.3s ease;
+        }
+
+        .cursor.hero-cursor {
+            background: linear-gradient(135deg, 
+#f8f5ff 0%, 
+#e8e0ff 100%);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+            transition: background 0.3s ease;
+        }
+
+        .cursor-trail.hero-trail {
+            background: linear-gradient(135deg, 
+#f8f5ff 0%, 
+#e8e0ff 100%);
+        }
+
+/* Typewriter Effect */
+.typewriter-container {
+    position: relative;
+    display: block;
+    min-height: 60px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.typewriter-text {
+    overflow: hidden;
+    border-right: 2px solid rgba(255,255,255,0.8);
+    white-space: nowrap;
+    display: inline-block; /* This makes it only as wide as the text */
+    animation: blink-caret 1s step-end infinite;
+    text-align: left;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgba(255,255,255,0.8) }
+}
+
+/* For dark mode */
+[data-theme="dark"] .typewriter-text {
+    border-right-color: rgba(255,255,255,0.8);
+}
+
+/* Easter Egg: Wave Underline on Introduction */
+.section-title {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.squiggle-underline {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 12px;
+    background: transparent;
+    transition: width 0.6s ease;
+    overflow: hidden;
+}
+
+.squiggle-underline::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%; /* Make it extra wide so it can animate properly */
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="%239b59b6" stroke-width="1"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 100px 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+}
+
+.section-title:hover .squiggle-underline {
+    width: 100%; /* This grows to full word length */
+}
+
+.section-title:hover .squiggle-underline::before {
+    opacity: 1;
+    animation: waveMove 2s linear infinite;
+}
+
+/* Fix the animation direction */
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50px); }
+}
+
+/* Dark mode support */
+[data-theme="dark"] .squiggle-underline::before {
+background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="%238ab4f8" stroke-width="2"/></svg>');
+background-size: 100px 100%; /* Add this if missing */
+}
+
+        /* Loading Screen - FIXED */
+        .loader {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.65s ease;
+            pointer-events: auto;
+        }
+
+        /* container square */
+        .loading-square {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            border: 4px solid rgba(255,255,255,0.18);
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            box-shadow: inset 0 0 30px rgba(255,255,255,0.02);
+            animation: spin 2s linear infinite;
+        }
+
+        /* the filling bar (rises from bottom to top) */
+        .fill-bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 0%;
+            background: rgba(255,255,255,0.95);
+            transition: height 0.12s linear;
+            opacity: 0.5;
+        }
+
+        /* FIXED: Loading text positioning and visibility */
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            z-index: 10001;
+            text-align: center;
+        }
+
+        /* fade state */
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    /* Scroll Progress Bar */
+.scroll-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    width: 0%;
+    transition: width 0.1s ease;
+    z-index: 1001;
+}
+
+/* Ensure navbar has relative positioning for the progress bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+/* Dark mode support */
+[data-theme="dark"] .scroll-progress {
+    background: var(--gradient-primary);
+}
+
+        /* Music Controls */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Download Button */
+        .download-resume-btn {
+            display: inline-block;
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 2rem auto;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .download-resume-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        .download-resume-btn i {
+            margin-right: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 7rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        .video-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover::after {
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Error Modal */
+        .error-modal {
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .error-modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            box-shadow: var(--shadow-hover);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .close-modal-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Resume Section */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .resume-section {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .resume-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resume-item:last-child {
+            border-bottom: none;
+        }
+
+        .resume-item h4 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item .meta {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* Internship Rotations */
+        .rotation-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .rotation-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .rotation-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cursor, .cursor-trail {
+                display: none;
+            }
+            body {
+                cursor: auto !important;
+            }
+            * {
+                cursor: auto !important;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active {
+                display: none;
+            }
+            .download-resume-btn {
+                display: block;
+                width: fit-content;
+                margin: 2rem auto;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .resume-grid {
+                grid-template-columns: 1fr;
+            }
+            .error-modal-content {
+                margin: 20% auto;
+                width: 95%;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NEW: Music control styles for hero section */
+        .music-control.hero-contrast {
+            background: linear-gradient(135deg, 
+#ffffff 0%, 
+#f0f0f0 100%) !important;
+        }
+        .music-control.hero-contrast #musicIcon {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent; /* Fallback for non-Webkit browsers */
+        }
+        /* Floating Bubbles */
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float-bubble linear infinite;
+}
+
+.bubble:nth-child(1) {
+    left: 10%;
+    width: 80px;
+    height: 80px;
+    animation-duration: 25s;
+    animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+    left: 20%;
+    width: 120px;
+    height: 120px;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.bubble:nth-child(3) {
+    left: 35%;
+    width: 60px;
+    height: 60px;
+    animation-duration: 20s;
+    animation-delay: -10s;
+}
+
+.bubble:nth-child(4) {
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    animation-duration: 35s;
+    animation-delay: -15s;
+}
+
+.bubble:nth-child(5) {
+    left: 70%;
+    width: 90px;
+    height: 90px;
+    animation-duration: 28s;
+    animation-delay: -20s;
+}
+
+.bubble:nth-child(6) {
+    left: 85%;
+    width: 70px;
+    height: 70px;
+    animation-duration: 22s;
+    animation-delay: -25s;
+}
+
+@keyframes float-bubble {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Apply rotation card hover effect to ALL cards */
+.card {
+    background: var(--bg-white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+    /* Add transform origin for smooth scaling */
+    transform-origin: center;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Ensure the rotation cards keep their specific functionality */
+.rotation-content .card:hover {
+    transform: translateY(-10px); /* Same as other cards */
+}
+
+/* Optional: Add a subtle scale effect for more dynamism */
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.rotation-content .card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    left: 30px;
+    bottom: 50%;
+    transform: translateY(50%);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.scroll-arrow {
+    width: 20px;
+    height: 40px;
+    position: relative;
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+.scroll-arrow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+}
+
+.scroll-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid rgba(255, 255, 255, 0.8);
+}
+
+@keyframes scroll-bounce {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        display: none;
+    }
+}
+/* Dark mode variables */
+:root[data-theme="dark"] {
+    --primary-color: 
+#e8eaed;
+    --secondary-color: 
+#8ab4f8;
+    --accent-color: 
+#f28b82;
+    --text-light: 
+#9aa0a6;
+    --text-dark: 
+#e8eaed;
+    --bg-light: 
+#202124;
+    --bg-white: 
+#303134;
+    --bg-blue: 
+#1d2b3b;
+    --gradient-primary: linear-gradient(135deg, 
+#4285f4 0%, 
+#34a853 100%);
+    --gradient-secondary: linear-gradient(135deg, 
+#ea4335 0%, 
+#fbbc04 100%);
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .navbar {
+    background: rgba(32, 33, 36, 0.95);
+}
+
+/* Light mode navbar scroll states */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 2px 30px rgba(0,0,0,0.15) !important;
+}
+
+/* Add this to your existing dark mode styles */
+[data-theme="dark"] .footer {
+    background: var(--bg-blue); /* or use --bg-white for slightly lighter */
+}
+
+/* Dark mode navbar scroll states */
+[data-theme="dark"] .navbar.scrolled {
+    background: rgba(32, 33, 36, 0.98) !important;
+    box-shadow: 0 2px 30px rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, 
+#1a73e8 0%, 
+#137333 100%);
+}
+
+[data-theme="dark"] .bubble {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .error-modal-content {
+    background: var(--bg-white);
+    color: var(--text-dark);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Ensure nav-menu stays properly aligned */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loading-square" id="loadingSquare">
+            <div class="fill-bar" id="fillBar"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Loading...</div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="error-modal">
+        <div class="error-modal-content">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="error-title">Video Not Available</h2>
+            <p class="error-message">Hi Dr. Young- This video is still in progress!</p>
+            <button class="close-modal-btn" onclick="closeErrorModal()">Got it</button>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Music Control -->
+    <button class="music-control" id="musicControl">
+        <i class="fas fa-play" id="musicIcon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Sydney Walter</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+         <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#video" class="nav-link">Reflection</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
+        <li><a href="#artifacts" class="nav-link">Artifacts</a></li>
+        <li><a href="#internship" class="nav-link">Internship</a></li>
+        <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button></li>
+        </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="hero-content">
+        <h1>Sydney Walter</h1>
+        <div class="hero-subtitle typewriter-container">
+        <span id="typewriter" class="typewriter-text"></span>
+        </div>
+        <a href="#about" class="cta-button">Explore My Work</a>
+    </div>
+    </section>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator" id="scrollIndicator">
+    <div class="scroll-text">SCROLL</div>
+    <div class="scroll-arrow"></div>
+</div>
+
+    <!-- Introduction Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Introduction</h2>
+                <p class="section-subtitle">Passionate professional with a focus on information systems and cybersecurity management, dedicated to creating innovative solutions that bridge technology and business needs.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Expertise</h3>
+                    <p>Has used a variety of technical tools including programming languages like SQL, Python, and C#, as well as specialized tools such as Visual Studio/VS Code, ServiceNow, Nexthink, Azure DevOps (ADO), and UrbanCode Deploy (UCD).</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation Focus</h3>
+                    <p>Committed to leveraging technology to solve complex business challenges and improve operational efficiency through creative problem-solving. Enjoys exploring emerging technologies to identify opportunities for process improvement.</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaborative Approach</h3>
+                    <p>Strong team player with excellent communication skills, experienced in working with diverse teams to deliver successful projects. Values cross-functional collaboration and stakeholder engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Reflection Section -->
+    <section id="video" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Video Reflection</h2>
+                <p class="section-subtitle">A personal reflection on my academic journey and professional growth in the BlueSky program.</p>
+            </div>
+
+            <div class="video-container fade-in">
+                <div class="video-placeholder" onclick="showErrorModal()">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Professional Resume</h2>
+                <p class="section-subtitle">Comprehensive overview of my education, experience, and skills in computing and information systems.</p>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <a href="#" class="download-resume-btn" id="downloadResumeBtn">
+                    <i class="fas fa-download"></i>
+                    DOWNLOAD RESUME
+                </a>
+            </div>
+
+            <div class="card fade-in" style="margin-top: 2rem;">
+                <div class="card-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Professional Vision & Mission Statement</h3>
+                <p>To leverage cutting-edge technologies to create meaningful improvements in people's daily experiences with technology. My mission is to bridge the gap between complex technical systems and human needs, developing solutions that enhance how end users interact with technology. I believe technology should serve people, not the other way around, and I'm passionate about making systems more accessible, efficient, and genuinely helpful for everyone who depends on them.</p>
+            </div>
+
+            <div class="card fade-in" style="margin-top: 2rem;">
+                <div class="card-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Professional & Career Goals</h3>
+                <p>Seeking diverse opportunities in information systems and technology where I can contribute both strategically and technically. While interested in project management and leadership roles, I'm equally passionate about getting hands-deep in technical work-understanding system architectures, troubleshooting complex issues, and building solutions from the ground up. My goal is to develop a well-rounded skill set that allows me to lead projects effectively by better understanding their technical foundations. I'm drawn to roles involving data analytics, system diagnostics, and user experience improvement. I want to contribute meaningfully to solutions that genuinely improve people's experiences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Artifacts Section -->
+    <section id="artifacts" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Professional Artifacts</h2>
+                <p class="section-subtitle">Selected coursework and projects demonstrating technical proficiency and problem-solving capabilities.</p>
+            </div>
+
+            <div class="card-grid">
+                 <div class="card fade-in">
+                    <div class="card-icon">
+                    <i class="fas fa-users-cog"></i>
+                 </div>
+                 <h3>Agile Tutor-Finding Application</h3>
+                 <p>Graduate software project management course featuring a three-person development team over three months. Served as Scrum Master, facilitating daily standups, sprint planning, and retrospectives while following agile methodologies to deliver a functional tutor-matching application with user authentication and search capabilities.</p>
+                 <div style="margin-top: 1rem;">
+                    <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">Agile/Scrum</span>
+                    <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Project Management</span>
+                 </div>
+            </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">
+                       <i class="fas fa-network-wired"></i>
+                    </div>
+                        <h3>Cybersecurity Traffic Analysis with Gephi</h3>
+                        <p>Graduate-level network analysis project using Gephi visualization software to examine international cybersecurity traffic patterns. Analyzed homophily relationships in country-to-country network data to identify clustering patterns, potential threat vectors, and communication anomalies in global cybersecurity incidents.</p>
+                    <div style="margin-top: 1rem;">
+                       <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">Gephi</span>
+                        <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Network Analysis</span>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">
+                      <i class="fas fa-eye"></i>
+                    </div>
+                        <h3>Computer Vision Face Detection System</h3>
+                         <p>Graduate cybersecurity project implementing machine learning techniques using Python and OpenCV libraries. Developed a real-time face detection algorithm that processes video input and automatically draws bounding boxes around recognized human faces for security monitoring applications.</p>
+                    <div style="margin-top: 1rem;">
+                          <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">Python</span>
+                          <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Experience Section -->
+    <section id="internship" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Internship Experience</h2>
+                <p class="section-subtitle">Professional development through structured internship rotations, gaining hands-on experience across multiple departments and technologies.</p>
+            </div>
+
+            <div class="rotation-tabs">
+                <button class="tab-button active" onclick="showRotation(1)">Rotation I</button>
+                <button class="tab-button" onclick="showRotation(2)">Rotation II</button>
+                <button class="tab-button" onclick="showRotation(3)">Rotation III</button>
+            </div>
+
+            <div id="rotation1" class="rotation-content active">
+    <div class="card">
+        <div class="card-icon">
+            <i class="fas fa-code"></i>
+        </div>
+        <h3>ETS Web Development & DevOps - BlueCross BlueShield</h3>
+        <p>Worked as a developer on the Public Portals team within Enterprise Technology Solutions, focusing on web content management and DevOps practices. Completed 13 independent user stories over 3.5 months using HCL's Web Content Management software and Azure DevOps, contributing to production-level updates on BCBST.com and assisting in legacy system migrations.</p>
+        <h4 style="margin-top: 1.5rem; color: var(--text-dark);">Key Deliverables:</h4>
+        <ul style="margin-top: 0.5rem; color: var(--text-light);">
+            <li>    Production website updates and content syndication across multiple environments</li>
+            <li>    Migration of legacy user stories from IBM RTC to Azure DevOps</li>
+            <li>    Security analytics documentation using CheckMarx SAST tool data</li>
+            <li>    Comprehensive knowledge base creation for future intern onboarding</li>
+        </ul>
+        <h4 style="margin-top: 1.5rem; color: var(--text-dark);">Technologies Used:</h4>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">HCL WCM</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Azure DevOps</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Agile/Scrum</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">CheckMarx</span>
+        </div>
+    </div>
+</div>
+
+<div id="rotation2" class="rotation-content">
+    <div class="card">
+        <div class="card-icon">
+            <i class="fas fa-headset"></i>
+        </div>
+        <h3>I&O Digital Workplace Services & L2 Support - BlueCross BlueShield</h3>
+        <p>Focused on multi-tiered technical support with the Digital Workplace Services team, learning L1, L2, and L3 troubleshooting methodologies through ServiceNow ticket management and user assistance. Additionally pursued an independent cost savings initiative project using Nexthink analytics, creating queries and dashboards to support organizational efficiency goals.</p>
+        <h4 style="margin-top: 1.5rem; color: var(--text-dark);">Key Deliverables:</h4>
+        <ul style="margin-top: 0.5rem; color: var(--text-light);">
+            <li>L2 support ticket resolution and escalation procedures</li>
+            <li>Cost savings initiative dashboard using Nexthink queries</li>
+            <li>Nexthink Associate certification and device compliance analysis</li>
+            <li>PI planning participation and cross-team collaboration experience</li>
+        </ul>
+        <h4 style="margin-top: 1.5rem; color: var(--text-dark);">Technologies Used:</h4>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">ServiceNow</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Nexthink</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Intune</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">L2 Support</span>
+        </div>
+    </div>
+</div>  
+
+           <div id="rotation3" class="rotation-content">
+    <div class="card">
+        <div class="card-icon">
+            <i class="fas fa-code-branch"></i>
+        </div>
+        <h3>ETS Payments - BlueCross BlueShield</h3>
+        <p>Worked with the Payments team to facilitate code migration from IBM RTC to Azure DevOps by creating comprehensive build and release pipelines. Responsible for end-to-end pipeline development using provided documentation, including code security remediation for vulnerabilities flagged by static analysis tools.</p>
+        <h4 style="margin-top: 1.5rem; color: var(--text-dark);">Key Deliverables:</h4>
+        <ul style="margin-top: 0.5rem; color: var(--text-light);">
+            <li>Build and release pipeline creation for RTC to ADO migration</li>
+            <li>Code security vulnerability remediation using static analysis tools</li>
+            <li>End-to-end deployment process documentation and implementation</li>
+            <li>Quality gate integration and automated testing workflows</li>
+            <li>Legacy system modernization and CI/CD pipeline optimization</li>
+        </ul>
+        <h4 style="margin-top: 1.5rem; color: var(--text-dark);">Technologies Used:</h4>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">Azure DevOps</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">UCD</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">CheckMarx</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Sonatype</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">SonarQube</span>
+            <span style="background: var(--secondary-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; margin-left: 0.5rem;">Git</span>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3>Let's Connect</h3>
+            <div class="social-links">
+                 <a href="https://www.linkedin.com/in/sydneywalter-xml" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                 <a href="mailto:sydneywalter@proton.me" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2025 Sydney Walter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Audio element for background music -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- Fallback: You'll need to replace this with an actual music file -->
+    </audio>
+
+    <script>
+        // Error Modal Functions
+        function showErrorModal() {
+            document.getElementById('errorModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeErrorModal() {
+            document.getElementById('errorModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('errorModal');
+            if (event.target === modal) {
+                closeErrorModal();
+            }
+        });
+
+        // Loading Screen with Progress Bar
+        (function() {
+            const loader = document.getElementById('loader');
+            const fillBar = document.getElementById('fillBar');
+            const loadingText = document.getElementById('loadingText');
+
+            if (!loader || !fillBar || !loadingText) {
+                console.warn('Loader elements missing. Make sure loader HTML IDs match (#loader, #fillBar, #loadingText).');
+                return;
+            }
+
+            // ensure page won't scroll while loader is active
+            const prevOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+
+            function startFakeProgress() {
+                console.log('Loader: startFakeProgress');
+                let progress = 0;
+                const increasePerc = 2;   // increase per tick
+                const intervalMs = 35;    // tick every 35ms -> ~1.75 seconds
+
+                const interval = setInterval(() => {
+                    progress = Math.min(100, progress + increasePerc);
+                    fillBar.style.height = progress + '%';
+                    loadingText.textContent = progress + '%';
+
+                    // safety: ensure fill is visible even if CSS transition delayed
+                    fillBar.getBoundingClientRect();
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        // fade out
+                        loader.classList.add('hidden');
+                        console.log('Loader: reached 100% -> fading out');
+
+                        // remove from DOM after the CSS fade completes
+                        setTimeout(() => {
+                            if (loader.parentNode) loader.parentNode.removeChild(loader);
+                            // restore body overflow
+                            document.body.style.overflow = prevOverflow || 'auto';
+                            console.log('Loader removed and scrolling restored');
+                        }, 700); // slightly longer than CSS transition (0.65s) to be safe
+                    }
+                }, intervalMs);
+            }
+
+            // Start when window 'load' happens (images/fonts fully loaded)
+            if (document.readyState === 'complete') {
+                // page already loaded
+                startFakeProgress();
+            } else {
+                window.addEventListener('load', startFakeProgress, { once: true });
+            }
+
+            // DEBUG: click loader to force-remove (useful while developing)
+            loader.addEventListener('click', () => {
+                console.log('Loader: manual click remove');
+                loader.classList.add('hidden');
+                setTimeout(() => {
+                    if (loader.parentNode) loader.parentNode.removeChild(loader);
+                    document.body.style.overflow = prevOverflow || 'auto';
+                }, 350);
+            });
+        })();
+
+        // Custom Cursor and Trail
+        const cursor = document.getElementById('cursor');
+        const trails = [];
+        const trailLength = 20;
+
+        // Create cursor trails
+        for (let i = 0; i < trailLength; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+            trails.push({
+                element: trail,
+                x: 0,
+                y: 0
+            });
+        }
+
+        let mouseX = 0, mouseY = 0;
+        let isInHero = false;
+        let isInNavbar = false;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Check if cursor is in navbar
+            const navbar = document.querySelector('.navbar');
+            const navbarRect = navbar.getBoundingClientRect();
+            const newIsInNavbar = (
+                mouseY >= navbarRect.top &&
+                mouseY <= navbarRect.bottom &&
+                mouseX >= navbarRect.left &&
+                mouseX <= navbarRect.right
+            );
+
+            // Check if cursor is in hero section
+            const heroSection = document.getElementById('home');
+            const heroRect = heroSection.getBoundingClientRect();
+            const newIsInHero = (
+                mouseY >= heroRect.top &&
+                mouseY <= heroRect.bottom &&
+                mouseX >= heroRect.left &&
+                mouseX <= heroRect.right
+            ) && !newIsInNavbar; // Don't apply hero styling if in navbar
+
+            // Update navbar cursor styling
+            if (newIsInNavbar !== isInNavbar) {
+                isInNavbar = newIsInNavbar;
+
+                if (isInNavbar) {
+                    cursor.classList.add('navbar-cursor');
+                    cursor.classList.remove('hero-cursor');
+                    trails.forEach(trail => {
+                        trail.element.classList.add('navbar-trail');
+                        trail.element.classList.remove('hero-trail');
+                    });
+                } else {
+                    cursor.classList.remove('navbar-cursor');
+                    trails.forEach(trail => {
+                        trail.element.classList.remove('navbar-trail');
+                    });
+                }
+            }
+
+            // Update hero cursor styling (only if not in navbar)
+            if (newIsInHero !== isInHero) {
+                isInHero = newIsInHero;
+
+                if (isInHero && !isInNavbar) {
+                    cursor.classList.add('hero-cursor');
+                    cursor.classList.remove('navbar-cursor');
+                    trails.forEach(trail => {
+                        trail.element.classList.add('hero-trail');
+                        trail.element.classList.remove('navbar-trail');
+                    });
+                } else if (!isInNavbar) {
+                    cursor.classList.remove('hero-cursor');
+                    trails.forEach(trail => {
+                        trail.element.classList.remove('hero-trail');
+                    });
+                }
+            }
+        });
+
+        function updateCursor() {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+
+            // Update trails
+            for (let i = trails.length - 1; i > 0; i--) {
+                trails[i].x = trails[i - 1].x;
+                trails[i].y = trails[i - 1].y;
+            }
+
+            trails[0].x = mouseX;
+            trails[0].y = mouseY;
+
+            trails.forEach((trail, index) => {
+                const opacity = (trailLength - index) / trailLength * 0.6;
+                trail.element.style.left = trail.x + 'px';
+                trail.element.style.top = trail.y + 'px';
+                trail.element.style.opacity = opacity;
+            });
+
+            requestAnimationFrame(updateCursor);
+        }
+
+        updateCursor();
+
+        // Music Control
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = document.getElementById('musicIcon');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+
+        musicControl.addEventListener('click', () => {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicIcon.className = 'fas fa-play';
+            } else {
+                backgroundMusic.play().catch(e => {
+                    console.log('Audio autoplay prevented:', e);
+                });
+                musicIcon.className = 'fas fa-pause';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Download Resume functionality
+document.getElementById('downloadResumeBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Create a temporary link to download the PDF file
+    const a = document.createElement('a');
+    a.href = './downloadables/Sydney_Walter_Resume.pdf'; // Path to your PDF file
+    a.download = 'Sydney_Walter_Resume.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+});
+
+        // Mobile Menu - Fixed Version
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.getElementById('navMenu');
+
+// Function to close mobile menu
+function closeMobileMenu() {
+    navMenu.classList.remove('active');
+    const icon = mobileMenuBtn.querySelector('i');
+    if (icon) {
+        icon.className = 'fas fa-bars';
+    }
+}
+
+// Function to toggle mobile menu
+function toggleMobileMenu() {
+    navMenu.classList.toggle('active');
+    const icon = mobileMenuBtn.querySelector('i');
+    if (icon) {
+        if (navMenu.classList.contains('active')) {
+            icon.className = 'fas fa-times';
+        } else {
+            icon.className = 'fas fa-bars';
+        }
+    }
+}
+
+// Main mobile menu button click handler
+if (mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
+}
+
+// Close mobile menu when clicking on navigation links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        // Only close menu if it's currently active (mobile view)
+        if (navMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// Close mobile menu when clicking outside of it
+document.addEventListener('click', (e) => {
+    // Check if menu is active and click is outside menu and button
+    if (navMenu.classList.contains('active') && 
+        !navMenu.contains(e.target) && 
+        !mobileMenuBtn.contains(e.target)) {
+        closeMobileMenu();
+    }
+});
+
+// Close mobile menu on window resize (when switching to desktop)
+window.addEventListener('resize', () => {
+    // If window is resized to desktop size, close mobile menu
+    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+        closeMobileMenu();
+    }
+});
+
+        // Smooth scrolling and scroll animations
+        function showRotation(rotationNum) {
+            // Hide all rotation contents
+            document.querySelectorAll('.rotation-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected rotation and activate button
+            document.getElementById('rotation' + rotationNum).classList.add('active');
+            document.querySelectorAll('.tab-button')[rotationNum - 1].classList.add('active');
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Cursor hover effects
+        document.querySelectorAll('a, button, .card').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+            });
+
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+                // NEW: Add this function to check if music button is over hero section
+        function checkMusicButtonPosition() {
+            const musicControl = document.getElementById('musicControl');
+            const heroSection = document.getElementById('home');
+
+            if (!musicControl || !heroSection) return;
+
+            const musicRect = musicControl.getBoundingClientRect();
+            const heroRect = heroSection.getBoundingClientRect();
+
+            // Calculate center point of music button
+            const musicCenterX = musicRect.left + musicRect.width / 2;
+            const musicCenterY = musicRect.top + musicRect.height / 2;
+
+            // Check if center point is within hero section
+            const isOverHero = (
+                musicCenterY >= heroRect.top &&
+                musicCenterY <= heroRect.bottom &&
+                musicCenterX >= heroRect.left &&
+                musicCenterX <= heroRect.right
+            );
+
+            // Toggle the special class based on position
+            if (isOverHero) {
+                musicControl.classList.add('hero-contrast');
+            } else {
+                musicControl.classList.remove('hero-contrast');
+            }
+        }
+
+        // Call this function periodically and on scroll/resize
+        setInterval(checkMusicButtonPosition, 100);
+        window.addEventListener('scroll', checkMusicButtonPosition);
+        window.addEventListener('resize', checkMusicButtonPosition);
+
+        // Also check initially when page loads
+        window.addEventListener('load', checkMusicButtonPosition);
+
+        // Scroll Indicator
+const scrollIndicator = document.getElementById('scrollIndicator');
+let hasScrolled = false;
+
+window.addEventListener('scroll', function() {
+    if (!hasScrolled && window.scrollY > 100) {
+        hasScrolled = true;
+        scrollIndicator.classList.add('hidden');
+    }
+});
+
+// Reset scroll indicator when back at top
+window.addEventListener('scroll', function() {
+    if (window.scrollY < 50 && hasScrolled) {
+        hasScrolled = false;
+        scrollIndicator.classList.remove('hidden');
+    }
+});
+// Theme Toggle Functionality
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const html = document.documentElement;
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', currentTheme);
+
+// Update icon based on current theme
+if (currentTheme === 'dark') {
+    themeIcon.className = 'fas fa-sun';
+} else {
+    themeIcon.className = 'fas fa-moon';
+}
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    // Update icon
+    if (newTheme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+    } else {
+        themeIcon.className = 'fas fa-moon';
+    }
+});
+// Simple rotating title attribute
+const nameElement = document.querySelector('.hero-content h1');
+const titles = [
+    "Professional Problem Solver 🧩",
+    "Coffee Enthusiast ☕", 
+    "Innovation Instigator ✨",
+    "Continuous Learner 🧠",
+    "Error Message Translator 🚦"
+];
+
+let titleIndex = 0;
+
+nameElement.addEventListener('mouseenter', () => {
+    nameElement.title = titles[titleIndex];
+    titleIndex = (titleIndex + 1) % titles.length;
+});
+
+// Easter Egg: Purple squiggle underline
+// Easter Egg: Purple squiggle underline for ALL section titles
+document.addEventListener('DOMContentLoaded', function() {
+    // Find ALL section titles
+    const sectionTitles = document.querySelectorAll('.section-title');
+
+    sectionTitles.forEach(title => {
+        // Create the squiggle element
+        const squiggle = document.createElement('div');
+        squiggle.className = 'squiggle-underline';
+        title.appendChild(squiggle);
+
+        // Add a subtle hover effect to the title itself
+        title.style.transition = 'transform 0.3s ease';
+        title.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        title.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+});
+
+// Typewriter Effect
+function typeWriterEffect() {
+    const text = "Computing & Information Systems Professional";
+    const typewriterElement = document.getElementById('typewriter');
+    let i = 0;
+    const speed = 80; // typing speed in ms
+
+    function type() {
+        if (i < text.length) {
+            typewriterElement.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            // Stop blinking cursor after finishing
+            setTimeout(() => {
+                typewriterElement.style.borderRight = 'none';
+            }, 1000);
+        }
+    }
+
+    // Start typing after a brief delay
+    setTimeout(type, 1000);
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    typeWriterEffect();
+});
+
+// Optional: Reset and retype when scrolling back to top
+let hasTyped = false;
+window.addEventListener('scroll', function() {
+    const heroSection = document.getElementById('home');
+    const heroRect = heroSection.getBoundingClientRect();
+
+    if (heroRect.top >= 0 && heroRect.bottom <= window.innerHeight && !hasTyped) {
+        // Hero is in view, trigger typewriter
+        const typewriterElement = document.getElementById('typewriter');
+        typewriterElement.innerHTML = '';
+        typewriterElement.style.borderRight = '2px solid rgba(255,255,255,0.8)';
+        hasTyped = true;
+        typeWriterEffect();
+    } else if (heroRect.top < -100) {
+        // Reset when scrolled well past hero
+        hasTyped = false;
+    }
+});
+
+// Scroll Progress Bar
+function createScrollProgress() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.querySelector('.navbar').appendChild(progressBar);
+
+    function updateProgress() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight - windowHeight;
+        const scrollPosition = window.scrollY;
+        const progress = (scrollPosition / documentHeight) * 100;
+
+        progressBar.style.width = progress + '%';
+
+        // Achievement messages (optional)
+        if (progress > 25 && progress < 30) {
+            console.log('🏆 Achievement Unlocked: Scroll Explorer!');
+        }
+        if (progress > 50 && progress < 55) {
+            console.log('🏆 Achievement Unlocked: Halfway Hero!');
+        }
+        if (progress > 75 && progress < 80) {
+            console.log('🏆 Achievement Unlocked: Scroll Master!');
+        }
+        if (progress > 95) {
+            console.log('🏆 Achievement Unlocked: Bottom of the Barrel!');
+        }
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress(); // Initialize
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    createScrollProgress();
+});
+    </script>
+</body>
+</html>
